@@ -36,10 +36,24 @@ class SingleLinkedList:
                 cur = cur.next
         return False
 
+    def reverse(self):
+        if self.root == None: 
+            return
+        prev = None
+        cur = self.root
+        post = self.root.next
+        while post != None:
+            cur.next = prev
+            prev = cur
+            cur = post
+            post = post.next
+        cur.next = prev
+        self.root = cur
+
     def print_list(self):
         cur = self.root
         while cur is not None:
-            print(cur.data, end="->")
+            print(cur , end="->")
             cur = cur.next
         print('None')
 
@@ -50,6 +64,8 @@ if __name__ == "__main__":
     l.add(6)
     l.add(8)
     l.add(12)
+    l.print_list()
+    l.reverse()
     l.print_list()
 
     print("size:" + str(l.size))
